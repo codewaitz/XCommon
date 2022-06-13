@@ -1,0 +1,83 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdk build_versions.compile_sdk
+
+    defaultConfig {
+        minSdk build_versions.min_sdk
+        targetSdk build_versions.target_sdk
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    api "androidx.core:core-ktx:${versions.androidx_ktx}"
+    api "androidx.appcompat:appcompat:${versions.androidx_appcompat}"
+    api "com.google.android.material:material:${versions.android_material}"
+    testApi "junit:junit:${versions.junit}"
+    androidTestApi "androidx.test.ext:junit:${versions.androidx_junit}"
+    androidTestApi "androidx.test.espresso:espresso-core:${versions.androidx_espresso}"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:${versions.androidx_lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:${versions.androidx_lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.androidx_lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-process:${versions.androidx_lifecycle}"
+    implementation "com.android.support:support-v4:${versions.support_v4}"
+    api "androidx.constraintlayout:constraintlayout:${versions.android_constraintlayout}"
+    // ImmersionBar
+    implementation "com.geyifeng.immersionbar:immersionbar:${versions.immersionbar}"
+    implementation "com.geyifeng.immersionbar:immersionbar-ktx:${versions.immersionbar}"
+    // MMKV
+    implementation "com.tencent:mmkv:${versions.mmkv}"
+    // Gson
+    api "com.google.code.gson:gson:${versions.gson}"
+    // Glide
+    api "com.github.bumptech.glide:glide:${versions.glide}"
+    api "com.github.bumptech.glide:okhttp3-integration:${versions.glide}"
+    kapt "com.github.bumptech.glide:compiler:${versions.glide}"
+    // Coroutines
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.kotlin_coroutines}"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.kotlin_coroutines}"
+    // Banner
+    api "io.github.youth5201314:banner:${versions.banner}"
+    // RxJava
+    api "io.reactivex.rxjava3:rxkotlin:${versions.rxjava3}"
+    api "io.reactivex.rxjava3:rxandroid:${versions.rxandroid3}"
+    // OkHttp
+    api "com.squareup.okhttp3:okhttp:${versions.okhttp3}"
+    api "com.squareup.okhttp3:logging-interceptor:${versions.okhttp3}"
+    // Retrofit2
+    api "com.squareup.retrofit2:retrofit:${versions.retrofit2}"
+    api "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit2}"
+    api "com.squareup.retrofit2:converter-gson:${versions.retrofit2}"
+    api "com.squareup.retrofit2:adapter-rxjava3:${versions.retrofit2}"
+    // refresh
+    api "com.scwang.smart:refresh-layout-kernel:${versions.smart_refresh_layout}"
+    api "com.scwang.smart:refresh-header-classics:${versions.smart_refresh_layout}"
+    // permission
+    api "com.github.tbruyelle:rxpermissions:${versions.permission}"
+    // live event bus
+    api "com.jeremyliao:live-event-bus:${versions.live_event_bus}"
+}

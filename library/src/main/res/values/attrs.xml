@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="WheelView">
+        <attr name="wheelCyclic" format="boolean" />
+        <attr name="wheelEntries" format="reference" />
+        <attr name="wheelItemCount" format="integer" />
+        <attr name="wheelItemWidth" format="dimension" />
+        <attr name="wheelItemHeight" format="dimension" />
+        <attr name="wheelTextSize" format="dimension" />
+        <attr name="wheelTextColor" format="color" />
+        <attr name="wheelSelectedTextSize" format="dimension" />
+        <attr name="wheelSelectedTextColor" format="color" />
+        <attr name="wheelDividerColor" format="color" />
+        <attr name="wheelHighlightColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="Wheel3DView">
+        <attr name="wheelToward" format="enum">
+            <enum name="none" value="0" />
+            <enum name="left" value="-1" />
+            <enum name="right" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <!-- 自定义四角矩形ImageView 的四个圆角属性 -->
+    <declare-styleable name="Round_Angle_Image_View">
+        <attr name="left_top_radius" format="dimension" />
+        <attr name="right_top_radius" format="dimension" />
+        <attr name="left_bottom_radius" format="dimension" />
+        <attr name="right_bottom_radius" format="dimension" />
+        <attr name="radius" format="dimension" />
+    </declare-styleable>
+</resources>
