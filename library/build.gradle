@@ -66,8 +66,8 @@ dependencies {
     api "io.reactivex.rxjava3:rxkotlin:${versions.rxjava3}"
     api "io.reactivex.rxjava3:rxandroid:${versions.rxandroid3}"
     // OkHttp
-    api "com.squareup.okhttp3:okhttp:${versions.okhttp3}"
-    api "com.squareup.okhttp3:logging-interceptor:${versions.okhttp3}"
+    api "com.squareup.okhttp:okhttp:${versions.okhttp}"
+    api "com.squareup.okhttp:logging-interceptor:${versions.okhttp}"
     // Retrofit2
     api "com.squareup.retrofit2:retrofit:${versions.retrofit2}"
     api "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit2}"
