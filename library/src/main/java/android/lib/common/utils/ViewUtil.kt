@@ -50,19 +50,36 @@ object ViewUtil {
         url: String?,
         rateWH: Float
     ) {
-        imageView?.post {
-            try {
-                if (imageView.measuredWidth > 0) {
-                    imageView.layoutParams.height =
-                        NumberUtil.float2int(imageView.measuredWidth / rateWH)
-                    imageView.scaleType = ImageView.ScaleType.CENTER
-                }
-                GlideUtil.load(
-                    context,
-                    url,
-                    imageView
-                )
+        if (imageView == null) return
+        var height = 0
+        if (imageView.tag == null) {
+            height = try {
+                NumberUtil.string2Int(imageView.tag as String)
             } catch (ex: Exception) {
+                0
+            }
+        }
+        if (height > 0) {
+            GlideUtil.load(
+                context,
+                url,
+                imageView
+            )
+        } else {
+            imageView?.post {
+                try {
+                    if (imageView.measuredWidth > 0) {
+                        imageView.layoutParams.height =
+                            NumberUtil.float2int(imageView.measuredWidth / rateWH)
+                        imageView.scaleType = ImageView.ScaleType.CENTER
+                    }
+                    GlideUtil.load(
+                        context,
+                        url,
+                        imageView
+                    )
+                } catch (ex: Exception) {
+                }
             }
         }
     }

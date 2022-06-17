@@ -3,6 +3,7 @@ package com.xcommon.test
 import android.lib.common.base.BaseActivity
 import android.lib.common.base.BaseViewModel
 import android.lib.common.utils.VMProviderUtil
+import android.lib.common.widget.toast.XToast
 import android.os.Bundle
 import com.xcommon.test.databinding.ActivityMainBinding
 
@@ -16,7 +17,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        vb.btn.setOnClickListener {
+            XToast.showSuccess("测试")
+        }
     }
 
     override fun onCreate() {
