@@ -69,9 +69,10 @@ object ViewUtil {
             imageView?.post {
                 try {
                     if (imageView.measuredWidth > 0) {
-                        imageView.layoutParams.height =
-                            NumberUtil.float2int(imageView.measuredWidth / rateWH)
+                        var height = NumberUtil.float2int(imageView.measuredWidth / rateWH)
+                        imageView.layoutParams.height = height
                         imageView.scaleType = ImageView.ScaleType.CENTER
+                        imageView.tag = height
                     }
                     GlideUtil.load(
                         context,
