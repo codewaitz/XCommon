@@ -18,12 +18,14 @@ import com.google.android.material.snackbar.Snackbar
  * @Description: Toast显示
  */
 object XToast {
+    private var duration = 1000 // 显示时长
+
     // 显示文本信息
     fun showText(text: String) {
         if (StringUtil.isEmpty(text)) return
         var activity: Activity? = AllActivityManager.getTopActivity() ?: return
         var attachView = activity!!.window.decorView
-        var snackBar = Snackbar.make(attachView, "", Snackbar.LENGTH_SHORT)
+        var snackBar = Snackbar.make(attachView, "", duration)
         var snackBarView = snackBar.view as Snackbar.SnackbarLayout
         // 设置布局参数
         var lps = snackBarView.layoutParams as FrameLayout.LayoutParams
@@ -44,7 +46,7 @@ object XToast {
         if (StringUtil.isEmpty(text)) return
         var activity: Activity? = AllActivityManager.getTopActivity() ?: return
         var attachView = activity!!.window.decorView
-        var snackBar = Snackbar.make(attachView, "", Snackbar.LENGTH_SHORT)
+        var snackBar = Snackbar.make(attachView, "", duration)
         var snackBarView = snackBar.view as Snackbar.SnackbarLayout
         // 设置布局参数
         var lps = snackBarView.layoutParams as FrameLayout.LayoutParams
@@ -66,7 +68,7 @@ object XToast {
         if (StringUtil.isEmpty(text)) return
         var activity: Activity? = AllActivityManager.getTopActivity() ?: return
         var attachView = activity!!.window.decorView
-        var snackBar = Snackbar.make(attachView, "", Snackbar.LENGTH_SHORT)
+        var snackBar = Snackbar.make(attachView, "", duration)
         var snackBarView = snackBar.view as Snackbar.SnackbarLayout
         // 设置布局参数
         var lps = snackBarView.layoutParams as FrameLayout.LayoutParams

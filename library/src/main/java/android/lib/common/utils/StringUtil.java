@@ -27,14 +27,14 @@ public class StringUtil {
 
     // 格式化价格
     public static String formatPrice(double d) {
-        return "$ " + format2Decimal(d);
+        return "$" + format2Decimal(d);
     }
 
     // 格式化价格
     public static String formatPrice(String string) {
         double d = 0;
         if (!isEmpty(string)) d = Double.parseDouble(string);
-        return "$ " + format2Decimal(d);
+        return "$" + format2Decimal(d);
     }
 
     // 格式化2位小数
