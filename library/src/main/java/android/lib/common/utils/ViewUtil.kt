@@ -1,12 +1,9 @@
 package android.lib.common.utils
 
-import android.content.Context
-import android.lib.common.utils.glide.GlideUtil
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
 
 /**
  * @author: yangkui
@@ -40,30 +37,6 @@ object ViewUtil {
                 override fun afterTextChanged(p0: Editable?) {
                 }
             })
-        }
-    }
-
-    // 加载ImageView并且匹配高度
-    fun loadImageViewMatchHeight(
-        context: Context,
-        imageView: ImageView?,
-        url: String?,
-        rateWH: Float
-    ) {
-        imageView?.post {
-            try {
-                if (imageView.measuredWidth > 0) {
-                    imageView.layoutParams.height =
-                        NumberUtil.float2int(imageView.measuredWidth / rateWH)
-                    imageView.scaleType = ImageView.ScaleType.CENTER
-                }
-                GlideUtil.load(
-                    context,
-                    url,
-                    imageView
-                )
-            } catch (ex: Exception) {
-            }
         }
     }
 }

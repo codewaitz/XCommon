@@ -18,7 +18,18 @@ import com.bumptech.glide.request.RequestOptions
 class GlideUtil {
     companion object {
         fun load(context: Context, url: String?, imageView: ImageView) {
-            if (!StringUtil.isEmpty(url)) Glide.with(context).load(url).into(imageView)
+            load(context, url, imageView, 0)
+        }
+
+        fun load(context: Context, url: String?, imageView: ImageView, defaultRes: Int) {
+            if (!StringUtil.isEmpty(url)) {
+                var builder = Glide.with(context).load(url)
+                if (defaultRes != 0) {
+                    builder.placeholder(defaultRes).error(defaultRes)
+                }
+                builder.skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                    .into(imageView)
+            }
         }
 
         fun loadTopRound(context: Context, url: String?, imageView: ImageView) {
@@ -66,7 +77,7 @@ class GlideUtil {
                 .into(imageView);
         }
 
-        fun clearCache(context: Context){
+        fun clearCache(context: Context) {
             Glide.get(context).clearDiskCache()
         }
     }
