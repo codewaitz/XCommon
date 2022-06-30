@@ -4,6 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/UGreen/CODE/AAAAA/XCommon/app/src/main/res/layout/activity_main.xml" value="0.2509057971014493" />
+        <entry key="..\:/UGreen/CODE/AAAAA/XCommon/library/src/main/res/layout/common_toast_fail.xml" value="0.2509057971014493" />
+        <entry key="..\:/UGreen/CODE/AAAAA/XCommon/library/src/main/res/layout/common_toast_success.xml" value="0.2509057971014493" />
+        <entry key="..\:/UGreen/CODE/AAAAA/XCommon/library/src/main/res/layout/common_toast_text.xml" value="0.2509057971014493" />
+        <entry key="..\:/UGreen/CODE/AAAAA/XCommon/library/src/main/res/layout/common_view_dot.xml" value="0.4466666666666667" />
       </map>
     </option>
   </component>

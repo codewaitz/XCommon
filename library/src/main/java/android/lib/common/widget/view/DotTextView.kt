@@ -54,13 +54,11 @@ class DotTextView : FrameLayout {
             this.setBackgroundResource(oneDrawableResId)
             var dp18 = resources.getDimension(R.dimen.dp_18).toInt()
             this.layoutParams.width = dp18
-            this.layoutParams.height = dp18
             setPadding(0, 0, 0, 0)
         } else {
             this.setBackgroundResource(moreDrawableResId)
             this.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
-            this.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
-            var dp4 = resources.getDimension(R.dimen.dp_5).toInt()
+            var dp4 = resources.getDimension(R.dimen.dp_4).toInt()
             setPadding(dp4, 0, dp4, 0)
         }
     }
