@@ -19,6 +19,7 @@ open class BaseApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        instance = this // 实例赋值
         AllActivityManager.init(this) // activity manager
         MMKV.initialize(this) // kv init
         LiveEventBus.config().autoClear(true).lifecycleObserverAlwaysActive(true)// live bus
