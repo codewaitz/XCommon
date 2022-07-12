@@ -46,6 +46,7 @@
             android:orientation="horizontal">
 
             <FrameLayout
+                android:id="@+id/common_fl_warn_dialog_cancel"
                 android:layout_width="@dimen/dp_0"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
@@ -69,6 +70,7 @@
                 android:background="#EDEDF0" />
 
             <FrameLayout
+                android:id="@+id/common_fl_warn_dialog_sure"
                 android:layout_width="@dimen/dp_0"
                 android:layout_height="match_parent"
                 android:layout_weight="1">

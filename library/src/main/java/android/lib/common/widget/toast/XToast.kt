@@ -21,7 +21,7 @@ object XToast {
     private var duration = 1000 // 显示时长
 
     // 显示文本信息
-    fun showText(text: String) {
+    fun showText(text: String?) {
         if (StringUtil.isEmpty(text)) return
         var activity: Activity? = AllActivityManager.getTopActivity() ?: return
         var attachView = activity!!.window.decorView
@@ -42,7 +42,7 @@ object XToast {
     }
 
     // 显示成功状态信息
-    fun showSuccess(text: String) {
+    fun showSuccess(text: String?) {
         if (StringUtil.isEmpty(text)) return
         var activity: Activity? = AllActivityManager.getTopActivity() ?: return
         var attachView = activity!!.window.decorView
@@ -64,7 +64,7 @@ object XToast {
     }
 
     // 显示失败状态信息
-    fun showFail(text: String) {
+    fun showFail(text: String?) {
         if (StringUtil.isEmpty(text)) return
         var activity: Activity? = AllActivityManager.getTopActivity() ?: return
         var attachView = activity!!.window.decorView

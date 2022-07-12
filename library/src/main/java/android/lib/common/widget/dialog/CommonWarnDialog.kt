@@ -7,6 +7,7 @@ import android.lib.common.base.BaseDialog
 import android.lib.common.utils.StringUtil
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
 
@@ -100,6 +101,8 @@ class CommonWarnDialog : BaseDialog {
                 }
             } ?: run {
                 (view.findViewById(R.id.common_warn_dialog_sure) as TextView).visibility = View.GONE
+                (view.findViewById(R.id.common_fl_warn_dialog_sure) as FrameLayout).visibility =
+                    View.GONE
             }
             negativeButtonClickListener?.let {
                 (view.findViewById(R.id.common_warn_dialog_cancel) as TextView).setOnClickListener {
@@ -110,6 +113,8 @@ class CommonWarnDialog : BaseDialog {
                 }
             } ?: run {
                 (view.findViewById(R.id.common_warn_dialog_cancel) as TextView).visibility =
+                    View.GONE
+                (view.findViewById(R.id.common_fl_warn_dialog_cancel) as FrameLayout).visibility =
                     View.GONE
             }
             customDialog.setContentView(view)
