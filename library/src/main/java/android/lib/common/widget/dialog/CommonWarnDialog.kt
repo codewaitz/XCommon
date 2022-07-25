@@ -25,6 +25,8 @@ class CommonWarnDialog : BaseDialog {
         private var ok: String? = null
         private var cancel: String? = null
         private var title: String? = null
+        private var okColor: Int = 0
+        private var cancelColor: Int = 0
         private var positiveButtonClickListener: DialogInterface.OnClickListener? = null
         private var negativeButtonClickListener: DialogInterface.OnClickListener? = null
 
@@ -38,8 +40,18 @@ class CommonWarnDialog : BaseDialog {
             return this
         }
 
+        fun setPositiveTextColor(color: Int): Builder {
+            this.okColor = color
+            return this
+        }
+
         fun setNegativeText(text: String): Builder {
             this.cancel = text
+            return this
+        }
+
+        fun setNegativeTextColor(color: Int): Builder {
+            this.cancelColor = color
             return this
         }
 
@@ -78,6 +90,17 @@ class CommonWarnDialog : BaseDialog {
             }
             ok?.let {
                 (view.findViewById(R.id.common_warn_dialog_sure) as TextView).text = it
+            }
+            cancel?.let {
+                (view.findViewById(R.id.common_warn_dialog_cancel) as TextView).text = it
+            }
+            if (okColor != 0) {
+                (view.findViewById(R.id.common_warn_dialog_sure) as TextView).setTextColor(okColor)
+            }
+            if (cancelColor != 0) {
+                (view.findViewById(R.id.common_warn_dialog_cancel) as TextView).setTextColor(
+                    cancelColor
+                )
             }
             cancel?.let {
                 (view.findViewById(R.id.common_warn_dialog_cancel) as TextView).text = it

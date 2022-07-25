@@ -18,7 +18,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         vb.btn.setOnClickListener {
-            XToast.showSuccess("测试")
+            XToast.showSuccess("Test is Success")
         }
     }
 
