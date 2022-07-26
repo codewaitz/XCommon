@@ -17,6 +17,18 @@ import android.widget.TextView
  * @Description: CommonWarnDialog
  */
 class CommonWarnDialog : BaseDialog {
+
+    companion object { // 全局部分
+        private var staticPositiveTextColor = 0
+        private var staticNegativeTextColor = 0
+
+        // 设置文本颜色
+        fun staticTextColor(positiveTextColor: Int, negativeTextColor: Int) {
+            staticPositiveTextColor = positiveTextColor
+            staticNegativeTextColor = negativeTextColor
+        }
+    }
+
     constructor(context: Context?) : super(context!!)
     constructor(context: Context?, theme: Int) : super(context!!, theme)
 
@@ -84,27 +96,7 @@ class CommonWarnDialog : BaseDialog {
                     LinearLayout.LayoutParams.WRAP_CONTENT
                 )
             )
-            //设置弹框内容
-            content?.let {
-                (view.findViewById(R.id.common_warn_dialog_content) as TextView).text = it
-            }
-            ok?.let {
-                (view.findViewById(R.id.common_warn_dialog_sure) as TextView).text = it
-            }
-            cancel?.let {
-                (view.findViewById(R.id.common_warn_dialog_cancel) as TextView).text = it
-            }
-            if (okColor != 0) {
-                (view.findViewById(R.id.common_warn_dialog_sure) as TextView).setTextColor(okColor)
-            }
-            if (cancelColor != 0) {
-                (view.findViewById(R.id.common_warn_dialog_cancel) as TextView).setTextColor(
-                    cancelColor
-                )
-            }
-            cancel?.let {
-                (view.findViewById(R.id.common_warn_dialog_cancel) as TextView).text = it
-            }
+            //设置弹框文本
             title?.let {
                 var textView = view.findViewById(R.id.common_warn_dialog_title) as TextView
                 if (StringUtil.isEmpty(it)) {
@@ -114,7 +106,41 @@ class CommonWarnDialog : BaseDialog {
                     textView.visibility = View.VISIBLE
                 }
             }
-            //设置弹框按钮
+            content?.let {
+                (view.findViewById(R.id.common_warn_dialog_content) as TextView).text = it
+            }
+            ok?.let {
+                (view.findViewById(R.id.common_warn_dialog_sure) as TextView).text = it
+            }
+            cancel?.let {
+                (view.findViewById(R.id.common_warn_dialog_cancel) as TextView).text = it
+            }
+            // 设置颜色
+            var color = 0
+            if (okColor != 0) {
+                color = okColor
+            } else {
+                if (staticPositiveTextColor != 0) {
+                    color = staticPositiveTextColor
+                }
+            }
+            if (color != 0) {
+                (view.findViewById(R.id.common_warn_dialog_sure) as TextView).setTextColor(color)
+            }
+            color = 0
+            if (okColor != 0) {
+                color = cancelColor
+            } else {
+                if (staticNegativeTextColor != 0) {
+                    color = staticNegativeTextColor
+                }
+            }
+            if (color != 0) {
+                (view.findViewById(R.id.common_warn_dialog_cancel) as TextView).setTextColor(
+                    color
+                )
+            }
+            //设置按钮监听
             positiveButtonClickListener?.let {
                 (view.findViewById(R.id.common_warn_dialog_sure) as TextView).setOnClickListener {
                     positiveButtonClickListener!!.onClick(

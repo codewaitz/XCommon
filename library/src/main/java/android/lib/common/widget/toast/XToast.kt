@@ -20,6 +20,14 @@ import com.google.android.material.snackbar.Snackbar
  */
 object XToast {
     private var duration = 1000 // 显示时长
+    private var staticSuccessImgRes = 0 // 成功显示图片
+    private var staticFailImgRes = 0 // 失败显示图片
+
+    // 设置状态图片
+    fun staticImgRes(successImgRes: Int, failImgRes: Int) {
+        staticSuccessImgRes = successImgRes
+        staticFailImgRes = failImgRes
+    }
 
     // 显示文本信息
     fun showText(text: String?) {
@@ -64,8 +72,17 @@ object XToast {
         // 设置View
         var view =
             LayoutInflater.from(attachView.context).inflate(R.layout.common_toast_success, null)
+        // 设置图片
+        var imageRes = 0
         if (imgRes != 0) {
-            view.findViewById<ImageView>(R.id.common_toast_success_image).setImageResource(imgRes)
+            imageRes = imgRes
+        } else {
+            if (staticSuccessImgRes != 0) {
+                imageRes = staticSuccessImgRes
+            }
+        }
+        if (imageRes != 0) {
+            view.findViewById<ImageView>(R.id.common_toast_success_image).setImageResource(imageRes)
         }
         view.findViewById<TextView>(R.id.common_toast_success_text).text = text
         snackBarView.removeAllViews()
@@ -94,8 +111,16 @@ object XToast {
         // 设置View
         var view =
             LayoutInflater.from(attachView.context).inflate(R.layout.common_toast_fail, null)
+        var imageRes = 0
         if (imgRes != 0) {
-            view.findViewById<ImageView>(R.id.common_toast_fail_image).setImageResource(imgRes)
+            imageRes = imgRes
+        } else {
+            if (staticFailImgRes != 0) {
+                imageRes = staticFailImgRes
+            }
+        }
+        if (imageRes != 0) {
+            view.findViewById<ImageView>(R.id.common_toast_fail_image).setImageResource(imageRes)
         }
         view.findViewById<TextView>(R.id.common_toast_fail_text).text = text
         snackBarView.removeAllViews()
