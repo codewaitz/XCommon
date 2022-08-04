@@ -75,6 +75,11 @@ public class PictureSelectUtils {
         }
     }
 
+    // 获取拍照uri
+    public static Uri getCameraUri() {
+        return takePictureUri;
+    }
+
     /**
      * 裁剪，例如：输出100*100大小的图片，宽高比例是1:1
      *
