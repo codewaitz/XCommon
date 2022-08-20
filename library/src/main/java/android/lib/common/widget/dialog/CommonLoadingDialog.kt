@@ -12,7 +12,6 @@ import android.view.Window
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 /**
  * @author: yangkui
@@ -62,7 +61,7 @@ class CommonLoadingDialog : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Glide.with(requireContext()).asGif().load(R.drawable.gif_loading)
-            .diskCacheStrategy(DiskCacheStrategy.NONE).into(viewBinding.commonDialogLoadingImage)
+            .into(viewBinding.commonDialogLoadingImage)
     }
 
     //显示
