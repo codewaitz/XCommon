@@ -1,6 +1,5 @@
 package android.lib.common.widget.dialog
 
-import android.animation.ObjectAnimator
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.lib.common.R
@@ -22,7 +21,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
  */
 class CommonLoadingDialog : DialogFragment() {
     private lateinit var viewBinding: CommonDialogLoadingBinding
-    private lateinit var mAnimation: ObjectAnimator
 
     companion object {
         fun newInstance(): CommonLoadingDialog {
@@ -65,11 +63,6 @@ class CommonLoadingDialog : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         Glide.with(requireContext()).asGif().load(R.drawable.gif_loading)
             .diskCacheStrategy(DiskCacheStrategy.NONE).into(viewBinding.commonDialogLoadingImage)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        mAnimation.cancel()
     }
 
     //显示
