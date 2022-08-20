@@ -1,7 +1,7 @@
 package android.lib.common.base
 
 import android.lib.common.R
-import android.lib.common.widget.dialog.CommonProgressDialog
+import android.lib.common.widget.dialog.CommonLoadingDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.viewbinding.ViewBinding
@@ -16,7 +16,7 @@ abstract class BaseActivity<VB : ViewBinding>(val inflater: (inflater: LayoutInf
     BaseFragmentActivity() {
     protected lateinit var vb: VB // view binding
     private var vm: BaseViewModel? = null // view model
-    private var loadingDialog: CommonProgressDialog? = null
+    private var loadingDialog: CommonLoadingDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         prepareCreate()
@@ -69,7 +69,7 @@ abstract class BaseActivity<VB : ViewBinding>(val inflater: (inflater: LayoutInf
     }
 
     private fun showLoadingDialog() {
-        loadingDialog = CommonProgressDialog.newInstance()
+        loadingDialog = CommonLoadingDialog.newInstance()
         loadingDialog!!.showDialog(supportFragmentManager)
     }
 

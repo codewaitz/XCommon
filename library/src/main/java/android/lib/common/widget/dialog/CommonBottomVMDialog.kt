@@ -12,7 +12,7 @@ import androidx.fragment.app.FragmentActivity
 abstract class CommonBottomVMDialog : CommonBottomDialog {
     private var vm: BaseViewModel? = null // view model
     protected var activity: FragmentActivity
-    private var loadingDialog: CommonProgressDialog? = null
+    private var loadingDialog: CommonLoadingDialog? = null
 
     constructor(activity: FragmentActivity) : super(activity) {
         this.activity = activity
@@ -42,7 +42,7 @@ abstract class CommonBottomVMDialog : CommonBottomDialog {
     }
 
     private fun showLoadingDialog() {
-        loadingDialog = CommonProgressDialog.newInstance()
+        loadingDialog = CommonLoadingDialog.newInstance()
         loadingDialog!!.showDialog(activity.supportFragmentManager)
     }
 
