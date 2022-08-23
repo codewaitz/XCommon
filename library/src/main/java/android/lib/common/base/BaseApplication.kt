@@ -4,6 +4,7 @@ import android.app.Application
 import android.lib.common.exception.CrashHandler
 import android.lib.common.manager.AllActivityManager
 import android.lib.common.utils.LogUtil
+import android.lib.common.widget.dialog.loading.LoadingStyle
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.tencent.mmkv.MMKV
 
@@ -14,14 +15,19 @@ import com.tencent.mmkv.MMKV
  */
 open class BaseApplication : Application() {
 
-    companion object { // 实例
+    companion object {
+        // application instance
         lateinit var instance: Application
+
+        // loading style
+        lateinit var loadingStyle: LoadingStyle
     }
 
     override fun onCreate() {
         super.onCreate()
         instance = this // 实例赋值
         var isDebug = isDebugMode()
+        loadingStyle = loadingStyle()
         LogUtil.setMode(isDebug) // 日志模式
         AllActivityManager.init(this) // activity manager
         MMKV.initialize(this) // kv init
@@ -32,5 +38,9 @@ open class BaseApplication : Application() {
     // 获取APP 模式
     open fun isDebugMode(): Boolean {
         return false
+    }
+
+    open fun loadingStyle(): LoadingStyle {
+        return LoadingStyle.PROGRESS
     }
 }

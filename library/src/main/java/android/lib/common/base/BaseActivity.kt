@@ -1,7 +1,7 @@
 package android.lib.common.base
 
 import android.lib.common.R
-import android.lib.common.widget.dialog.CommonLoadingDialog
+import android.lib.common.manager.LoadingDialogManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.viewbinding.ViewBinding
@@ -16,7 +16,7 @@ abstract class BaseActivity<VB : ViewBinding>(val inflater: (inflater: LayoutInf
     BaseFragmentActivity() {
     protected lateinit var vb: VB // view binding
     private var vm: BaseViewModel? = null // view model
-    private var loadingDialog: CommonLoadingDialog? = null
+    private var loadingDialog: BaseLoadingDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         prepareCreate()
@@ -69,13 +69,13 @@ abstract class BaseActivity<VB : ViewBinding>(val inflater: (inflater: LayoutInf
     }
 
     private fun showLoadingDialog() {
-        loadingDialog = CommonLoadingDialog.newInstance()
-        loadingDialog!!.showDialog(supportFragmentManager)
+        if (loadingDialog == null) loadingDialog =
+            LoadingDialogManager.createInstance(BaseApplication.loadingStyle)
+        if (loadingDialog?.isVisible == false) loadingDialog?.showDialog(supportFragmentManager)
     }
 
     private fun hideLoadingDialog() {
-        if (loadingDialog != null) loadingDialog?.dismissDialog()
-        loadingDialog = null
+        loadingDialog?.dismissDialog()
     }
 
     override fun onDestroy() {

@@ -1,9 +1,7 @@
-package android.lib.common.widget.dialog
+package android.lib.common.base
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.lib.common.R
-import android.lib.common.databinding.CommonDialogLoadingBinding
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,22 +9,13 @@ import android.view.ViewGroup
 import android.view.Window
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
-import com.bumptech.glide.Glide
 
 /**
  * @author: yangkui
  * @Date: 2022/4/13
- * @Description: Common Progress
+ * @Description: loading
  */
-class CommonLoadingDialog : DialogFragment() {
-    private lateinit var viewBinding: CommonDialogLoadingBinding
-
-    companion object {
-        fun newInstance(): CommonLoadingDialog {
-            return CommonLoadingDialog()
-        }
-    }
-
+abstract class BaseLoadingDialog : DialogFragment() {
     override fun onStart() {
         super.onStart()
         //去掉DialogFragment外部的背景色
@@ -44,7 +33,6 @@ class CommonLoadingDialog : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        viewBinding = CommonDialogLoadingBinding.inflate(layoutInflater)
         dialog?.apply {
             requestWindowFeature(Window.FEATURE_NO_TITLE)
             setCanceledOnTouchOutside(false)
@@ -55,17 +43,11 @@ class CommonLoadingDialog : DialogFragment() {
                 decorView.setPadding(0, 0, 0, 0)
             }
         }
-        return viewBinding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        Glide.with(requireContext()).asGif().load(R.drawable.gif_loading)
-            .into(viewBinding.commonDialogLoadingImage)
+        return onCreateView()
     }
 
     //显示
-    fun showDialog(fragmentManager: FragmentManager) {
+    open fun showDialog(fragmentManager: FragmentManager) {
         if (isVisible) {
             dismiss()
         }
@@ -73,10 +55,11 @@ class CommonLoadingDialog : DialogFragment() {
     }
 
     //隐藏
-    fun dismissDialog() {
+    open fun dismissDialog() {
         if (isAdded) {
             dismiss()
         }
     }
 
+    open abstract fun onCreateView(): View
 }

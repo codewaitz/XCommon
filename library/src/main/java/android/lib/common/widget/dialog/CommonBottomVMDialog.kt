@@ -1,6 +1,9 @@
 package android.lib.common.widget.dialog
 
+import android.lib.common.base.BaseApplication
+import android.lib.common.base.BaseLoadingDialog
 import android.lib.common.base.BaseViewModel
+import android.lib.common.manager.LoadingDialogManager
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
 
@@ -12,7 +15,7 @@ import androidx.fragment.app.FragmentActivity
 abstract class CommonBottomVMDialog : CommonBottomDialog {
     private var vm: BaseViewModel? = null // view model
     protected var activity: FragmentActivity
-    private var loadingDialog: CommonLoadingDialog? = null
+    private var loadingDialog: BaseLoadingDialog? = null
 
     constructor(activity: FragmentActivity) : super(activity) {
         this.activity = activity
@@ -42,12 +45,12 @@ abstract class CommonBottomVMDialog : CommonBottomDialog {
     }
 
     private fun showLoadingDialog() {
-        loadingDialog = CommonLoadingDialog.newInstance()
-        loadingDialog!!.showDialog(activity.supportFragmentManager)
+        if (loadingDialog == null) loadingDialog =
+            LoadingDialogManager.createInstance(BaseApplication.loadingStyle)
+        if (loadingDialog?.isVisible == false) loadingDialog?.showDialog(activity.supportFragmentManager)
     }
 
     private fun hideLoadingDialog() {
-        if (loadingDialog != null) loadingDialog?.dismissDialog()
-        loadingDialog = null
+        loadingDialog?.dismissDialog()
     }
 }

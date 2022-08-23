@@ -32,6 +32,12 @@ class GlideUtil {
             }
         }
 
+        fun load(context: Context, resId: Int, imageView: ImageView) {
+            Glide.with(context).load(resId).skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                .into(imageView)
+        }
+
         fun loadTopRound(context: Context, url: String?, imageView: ImageView) {
             if (!StringUtil.isEmpty(url)) Glide.with(context).load(url)
                 .transform(GlideTopRoundTransform()).diskCacheStrategy(
