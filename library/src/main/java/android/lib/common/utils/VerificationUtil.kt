@@ -18,11 +18,7 @@ object VerificationUtil {
 
     // 校验手机号
     fun isMobile(mobile: String): Boolean {
-        var regex =
-            "^((13[0-9])|(14[5,7,9])|(15([0-3]|[5-9]))|(16[5,6])|(17[0-8])|(18[0-9])|(19[1、5、8、9]))\\d{8}$";
-        var p = Pattern.compile(regex);
-        var m = p.matcher(mobile);
-        return mobile.isNotEmpty() && mobile.length == 11 && m.matches()
+        return mobile.isNotEmpty()
     }
 
     // 校验验证码
