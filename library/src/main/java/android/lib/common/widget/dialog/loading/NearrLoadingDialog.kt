@@ -23,7 +23,7 @@ class NearrLoadingDialog : BaseLoadingDialog() {
         super.onViewCreated(view, savedInstanceState)
         try {
             val gifDrawable = viewBinding.commonDialogLoadingImage.drawable as GifDrawable
-            gifDrawable.setSpeed(2f)
+            gifDrawable.setSpeed(5f)
         } catch (ex: Exception) {
         }
     }

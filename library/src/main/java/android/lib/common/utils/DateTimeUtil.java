@@ -74,4 +74,14 @@ public class DateTimeUtil {
         }
         return "";
     }
+
+    // 字符串日期转上下午单位日期字符串
+    public static String date2UnitString(Date date, String pattern) {
+        try {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, Locale.ENGLISH);
+            return simpleDateFormat.format(date);
+        } catch (Exception ex) {
+        }
+        return null;
+    }
 }

@@ -56,7 +56,7 @@ public class StringUtil {
     public static String formatDistance(String m) {
         double km = 0;
         try {
-            km = Double.parseDouble(m) * 0.001;
+            km = Double.parseDouble(m) * 0.0006214;
         } catch (Exception ex) {
         }
         return format1Decimal(km);
@@ -74,6 +74,11 @@ public class StringUtil {
             patch = "0";
         }
         return patch + num;
+    }
+
+    // 格式化为小写单位
+    public static String formatDateUnit(String dateString) {
+        return resetEmpty(dateString).replace("AM", "am").replace("PM", "pm");
     }
 
     // 排序Int,Int
