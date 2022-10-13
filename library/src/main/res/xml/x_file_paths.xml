@@ -2,7 +2,7 @@
 <resources>
     <paths>
         <root-path
-            path=""
-            name="camera_photos" />
+            name="base_dir"
+            path="" />
     </paths>
 </resources>

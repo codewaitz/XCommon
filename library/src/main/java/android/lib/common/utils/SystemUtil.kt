@@ -87,4 +87,38 @@ object SystemUtil {
         }
         return appName
     }
+
+    // 获取版本号
+    fun getAppVersionCode(context: Context): String {
+        var appVersionCode = ""
+        try {
+            val packageManager = context.packageManager
+            val packageInfo = packageManager.getPackageInfo(
+                context.packageName, 0
+            )
+            appVersionCode = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                "" + packageInfo.longVersionCode
+            } else {
+                "" + packageInfo.versionCode
+            }
+        } catch (e: Throwable) {
+            e.printStackTrace()
+        }
+        return appVersionCode
+    }
+
+    // 获取版本名称
+    fun getAppVersionName(context: Context): String {
+        var appVersionCode = ""
+        try {
+            val packageManager = context.packageManager
+            val packageInfo = packageManager.getPackageInfo(
+                context.packageName, 0
+            )
+            appVersionCode = packageInfo.versionName
+        } catch (e: Throwable) {
+            e.printStackTrace()
+        }
+        return appVersionCode
+    }
 }
