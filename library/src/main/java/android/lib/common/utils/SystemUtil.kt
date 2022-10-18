@@ -89,17 +89,17 @@ object SystemUtil {
     }
 
     // 获取版本号
-    fun getAppVersionCode(context: Context): String {
-        var appVersionCode = ""
+    fun getAppVersionCode(context: Context): Long {
+        var appVersionCode: Long = 0
         try {
             val packageManager = context.packageManager
             val packageInfo = packageManager.getPackageInfo(
                 context.packageName, 0
             )
             appVersionCode = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                "" + packageInfo.longVersionCode
+                packageInfo.longVersionCode
             } else {
-                "" + packageInfo.versionCode
+                packageInfo.versionCode.toLong()
             }
         } catch (e: Throwable) {
             e.printStackTrace()
