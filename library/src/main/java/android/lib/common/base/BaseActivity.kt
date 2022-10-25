@@ -40,7 +40,7 @@ abstract class BaseActivity<VB : ViewBinding>(val inflater: (inflater: LayoutInf
         return null
     }
 
-    // status bar color
+    // get status bar color
     protected open fun getStatusBarColor(): Int {
         return -1
     }
@@ -48,6 +48,14 @@ abstract class BaseActivity<VB : ViewBinding>(val inflater: (inflater: LayoutInf
     // navigation bar color
     protected open fun getNavigationBarColor(): Int {
         return R.color.white
+    }
+
+    // set status bar color
+    protected fun setStatusBarColor(color: Int) {
+        immersionBar {
+            if (color == -1) transparentStatusBar()
+            else statusBarColor(color)
+        }
     }
 
     /**
