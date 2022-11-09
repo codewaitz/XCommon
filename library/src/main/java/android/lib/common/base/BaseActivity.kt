@@ -20,13 +20,13 @@ abstract class BaseActivity<VB : ViewBinding>(val inflater: (inflater: LayoutInf
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        prepareCreate()
-        initSystemBar() // status bar
+        prepareCreate() // prepare create
+        setSystemBar() // status bar
         vb = inflater(layoutInflater)
         setContentView(vb.root)
         vm = getViewModel()
-        onCreate() //create
         registerLoadingDialog() // 注册弹框
+        onCreate() //create
     }
 
     // Create prepare
@@ -40,37 +40,15 @@ abstract class BaseActivity<VB : ViewBinding>(val inflater: (inflater: LayoutInf
         return null
     }
 
-    // get status bar color
-    protected open fun getStatusBarColor(): Int {
-        return -1
-    }
-
-    // navigation bar color
-    protected open fun getNavigationBarColor(): Int {
-        return R.color.white
-    }
-
-    // set status bar color
-    protected fun setStatusBarColor(color: Int) {
-        immersionBar {
-            if (color == -1) transparentStatusBar()
-            else statusBarColor(color)
-        }
-    }
-
     /**
      * 状态栏导航栏初始化
      */
-    private fun initSystemBar() {
+    protected open fun setSystemBar() {
         immersionBar {
-            var color = getStatusBarColor()
-            if (color == -1) transparentStatusBar()
-            else statusBarColor(color)
-            color = getNavigationBarColor()
-            if (color == -1) transparentNavigationBar()
-            else navigationBarColor(color)
-            statusBarDarkFont(true)
+            transparentStatusBar()
+            navigationBarColor(R.color.white)
             fitsSystemWindows(true)
+            statusBarDarkFont(true)
             navigationBarDarkIcon(true)
         }
     }

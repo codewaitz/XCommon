@@ -56,9 +56,7 @@ abstract class BaseLoadingDialog : DialogFragment() {
 
     //隐藏
     open fun dismissDialog() {
-        if (isAdded) {
-            dismiss()
-        }
+        dismiss()
     }
 
     open abstract fun onCreateView(): View

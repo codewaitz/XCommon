@@ -46,11 +46,11 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-process:2.3.1"
     implementation "com.android.support:support-v4:28.0.0"
     api "androidx.constraintlayout:constraintlayout:2.0.4"
-    // ImmersionBar
-    implementation "com.geyifeng.immersionbar:immersionbar:3.2.2"
-    implementation "com.geyifeng.immersionbar:immersionbar-ktx:3.2.2"
     // MMKV
     implementation "com.tencent:mmkv:1.2.11"
+    // ImmersionBar
+    api "com.geyifeng.immersionbar:immersionbar:3.2.2"
+    api "com.geyifeng.immersionbar:immersionbar-ktx:3.2.2"
     // Gson
     api "com.google.code.gson:gson:2.8.6"
     // Glide

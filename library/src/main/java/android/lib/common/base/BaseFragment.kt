@@ -36,8 +36,8 @@ abstract class BaseFragment<VB : ViewBinding>(val inflater: (inflater: LayoutInf
     ): View? {
         vb = inflater(inflater, container, false)
         vm = getViewModel()
-        onCreateView()
         registerLoadingDialog() // 注册弹框
+        onCreateView()
         return vb.root
     }
 
