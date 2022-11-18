@@ -20,6 +20,7 @@ import android.widget.TextView
  */
 abstract class CommonBottomDialog : BaseDialog {
     private var title: String? = ""
+    private var tvTitle: TextView? = null
     var inflater: LayoutInflater
 
     constructor(context: Context) : this(context, null)
@@ -36,13 +37,7 @@ abstract class CommonBottomDialog : BaseDialog {
         findViewById<ImageView>(R.id.common_bottom_dialog_close).setOnClickListener {
             dismiss()
         }
-        var textView = findViewById<TextView>(R.id.common_bottom_dialog_title)
-        if (StringUtil.isEmpty(title)) {
-            textView.visibility = View.GONE
-        } else {
-            textView.text = title
-            textView.visibility = View.VISIBLE
-        }
+        tvTitle = findViewById(R.id.common_bottom_dialog_title)
         findViewById<LinearLayout>(R.id.common_bottom_dialog_content).addView(
             LayoutInflater.from(context).inflate(
                 getLayoutRes(),
@@ -52,9 +47,15 @@ abstract class CommonBottomDialog : BaseDialog {
         onCreate()
     }
 
-    abstract fun getLayoutRes(): Int
-
-    abstract fun onCreate()
+    protected fun setTitle(title: String?) {
+        this.title = title
+        if (StringUtil.isEmpty(title)) {
+            tvTitle?.visibility = View.GONE
+        } else {
+            tvTitle?.text = title
+            tvTitle?.visibility = View.VISIBLE
+        }
+    }
 
     override fun show() {
         super.show()
@@ -64,4 +65,8 @@ abstract class CommonBottomDialog : BaseDialog {
         layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT
         window!!.attributes = layoutParams
     }
+
+    abstract fun getLayoutRes(): Int
+
+    abstract fun onCreate()
 }
