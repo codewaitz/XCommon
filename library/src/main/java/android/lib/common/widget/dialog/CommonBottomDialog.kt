@@ -38,6 +38,7 @@ abstract class CommonBottomDialog : BaseDialog {
             dismiss()
         }
         tvTitle = findViewById(R.id.common_bottom_dialog_title)
+        setTitleText()
         findViewById<LinearLayout>(R.id.common_bottom_dialog_content).addView(
             LayoutInflater.from(context).inflate(
                 getLayoutRes(),
@@ -47,14 +48,18 @@ abstract class CommonBottomDialog : BaseDialog {
         onCreate()
     }
 
-    protected fun setTitle(title: String?) {
-        this.title = title
+    private fun setTitleText() {
         if (StringUtil.isEmpty(title)) {
             tvTitle?.visibility = View.GONE
         } else {
             tvTitle?.text = title
             tvTitle?.visibility = View.VISIBLE
         }
+    }
+
+    protected fun setTitle(title: String?) {
+        this.title = title
+        setTitleText()
     }
 
     override fun show() {
