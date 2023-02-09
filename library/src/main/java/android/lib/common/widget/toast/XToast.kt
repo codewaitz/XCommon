@@ -7,6 +7,7 @@ import android.lib.common.manager.AllActivityManager
 import android.lib.common.utils.StringUtil
 import android.view.Gravity
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
@@ -126,5 +127,26 @@ object XToast {
         snackBarView.removeAllViews()
         snackBarView.addView(view)
         snackBar.show()
+    }
+
+    fun showText(text: String?, attachView: View?) {
+        if (StringUtil.isEmpty(text)) return
+        if (attachView != null) {
+            var snackBar = Snackbar.make(attachView, "", duration)
+            var snackBarView = snackBar.view as Snackbar.SnackbarLayout
+            // 设置布局参数
+            var lps = snackBarView.layoutParams as FrameLayout.LayoutParams
+            lps.width = ViewGroup.LayoutParams.WRAP_CONTENT
+            lps.gravity = Gravity.CENTER
+            snackBarView.setBackgroundColor(Color.TRANSPARENT)
+            snackBarView.setPadding(0, 0, 0, 0)
+            // 设置View
+            var view =
+                LayoutInflater.from(attachView.context).inflate(R.layout.common_toast_text, null)
+            view.findViewById<TextView>(R.id.common_toast_text).text = text
+            snackBarView.removeAllViews()
+            snackBarView.addView(view)
+            snackBar.show()
+        }
     }
 }

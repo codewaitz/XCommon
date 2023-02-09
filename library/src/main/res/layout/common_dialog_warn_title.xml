@@ -84,7 +84,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:gravity="center"
-                    android:textColor="#2D63B8"
+                    android:textColor="#FF513A"
                     android:textSize="@dimen/sp_16" />
             </FrameLayout>
         </LinearLayout>

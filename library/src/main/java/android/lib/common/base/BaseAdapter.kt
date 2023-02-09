@@ -23,7 +23,7 @@ abstract class BaseAdapter<T> : RecyclerView.Adapter<BaseVH<T>> {
         this.list = list
     }
 
-    fun refresh(list: MutableList<T>) {
+    open fun refresh(list: MutableList<T>) {
         this.list = list
         notifyDataSetChanged()
     }

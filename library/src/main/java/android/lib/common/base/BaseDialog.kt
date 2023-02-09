@@ -7,7 +7,7 @@ import android.content.DialogInterface
 /**
  * @author: yangkui
  * @Date: 2022/4/27
- * @Description:
+ * @Description: BaseDialog
  */
 abstract class BaseDialog : Dialog {
     constructor(context: Context) : super(context)

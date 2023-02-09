@@ -12,8 +12,8 @@
     </style>
 
     <style name="Button">
-        <item name="android:layout_height">@dimen/dp_44</item>
-        <item name="android:textSize">@dimen/sp_15</item>
+        <item name="android:layout_height">@dimen/dp_50</item>
+        <item name="android:textSize">@dimen/sp_17</item>
     </style>
 
     <style name="BottomDialog" parent="@android:style/Theme.Dialog">

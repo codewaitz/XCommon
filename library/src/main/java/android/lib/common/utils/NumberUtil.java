@@ -8,7 +8,11 @@ package android.lib.common.utils;
 public class NumberUtil {
     // string to double
     public static double string2Double(String string) {
-        return Double.parseDouble(string);
+        try {
+            return Double.parseDouble(string);
+        } catch (Exception exception) {
+        }
+        return 0;
     }
 
     public static int float2int(float f) {

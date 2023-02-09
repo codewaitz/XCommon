@@ -33,6 +33,7 @@ abstract class CommonBottomDialog : BaseDialog {
         super.onCreate(savedInstanceState)
         setCanceledOnTouchOutside(true)
         window?.setGravity(Gravity.BOTTOM)
+        prepareCreate()
         setContentView(R.layout.common_bottom_dialog)
         findViewById<ImageView>(R.id.common_bottom_dialog_close).setOnClickListener {
             dismiss()
@@ -44,6 +45,7 @@ abstract class CommonBottomDialog : BaseDialog {
                 null
             )
         )
+        setTitle(title)
         onCreate()
     }
 
@@ -66,7 +68,9 @@ abstract class CommonBottomDialog : BaseDialog {
         window!!.attributes = layoutParams
     }
 
-    abstract fun getLayoutRes(): Int
+    protected abstract fun getLayoutRes(): Int
 
-    abstract fun onCreate()
+    protected open fun prepareCreate() {}
+
+    protected abstract fun onCreate()
 }
