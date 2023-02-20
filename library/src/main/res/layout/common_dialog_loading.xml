@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/common_dialog_loading_image"
-        android:layout_width="@dimen/dp_80"
-        android:layout_height="@dimen/dp_80"
-        android:gravity="center"
-        android:src="@drawable/gif_loading" />
-</LinearLayout>
+<pl.droidsonroids.gif.GifImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/common_dialog_loading_image"
+    android:layout_width="@dimen/dp_80"
+    android:layout_height="@dimen/dp_80"
+    android:src="@drawable/gif_loading" />

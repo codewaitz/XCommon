@@ -1,8 +1,8 @@
 package android.lib.common.widget.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.lib.common.R;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -10,14 +10,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
-
 /**
  * @author: yangkui
  * @Date: 2022/5/19
  * @Description:
  */
+@SuppressLint("AppCompatCustomView")
 public class ClearEditText extends EditText implements View.OnTouchListener, View.OnFocusChangeListener, TextWatcher {
 
     private Drawable mClearTextIcon;
@@ -26,29 +24,31 @@ public class ClearEditText extends EditText implements View.OnTouchListener, Vie
 
     public ClearEditText(final Context context) {
         super(context);
-        init(context);
+        init();
     }
 
     public ClearEditText(final Context context, final AttributeSet attrs) {
         super(context, attrs);
-        init(context);
+        init();
     }
 
     public ClearEditText(final Context context, final AttributeSet attrs, final int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context);
+        init();
     }
 
-    private void init(final Context context) {
-        final Drawable drawable = ContextCompat.getDrawable(context, R.drawable.common_clear_edittext_delete);
-        final Drawable wrappedDrawable = DrawableCompat.wrap(drawable); //Wrap the drawable so that it can be tinted pre Lollipop
-        DrawableCompat.setTint(wrappedDrawable, getCurrentHintTextColor());
-        mClearTextIcon = wrappedDrawable;
-        mClearTextIcon.setBounds(0, 0, mClearTextIcon.getIntrinsicHeight(), mClearTextIcon.getIntrinsicHeight());
+    private void init() {
         setClearIconVisible(false);
         super.setOnTouchListener(this);
         super.setOnFocusChangeListener(this);
         addTextChangedListener(this);
+    }
+
+    @Override
+    public void setCompoundDrawables(Drawable paramDrawable1, Drawable paramDrawable2, Drawable paramDrawable3, Drawable paramDrawable4) {
+        if (paramDrawable3 != null)
+            this.mClearTextIcon = paramDrawable3;
+        super.setCompoundDrawables(paramDrawable1, paramDrawable2, paramDrawable3, paramDrawable4);
     }
 
     @Override
@@ -104,7 +104,7 @@ public class ClearEditText extends EditText implements View.OnTouchListener, Vie
     }
 
     private void setClearIconVisible(final boolean visible) {
-        mClearTextIcon.setVisible(visible, false);
+        if (mClearTextIcon != null) mClearTextIcon.setVisible(visible, false);
         final Drawable[] compoundDrawables = getCompoundDrawables();
         setCompoundDrawables(
                 compoundDrawables[0],

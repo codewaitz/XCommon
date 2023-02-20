@@ -23,7 +23,7 @@ object VerificationUtil {
 
     // 校验验证码
     fun isCode(code: String): Boolean {
-        return code.isNotEmpty() && code.length == 4
+        return code.isNotEmpty()
     }
 
     // 校验密码

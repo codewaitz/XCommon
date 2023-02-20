@@ -24,6 +24,7 @@ class NearrLoadingDialog : BaseLoadingDialog() {
         try {
             val gifDrawable = viewBinding.commonDialogLoadingImage.drawable as GifDrawable
             gifDrawable.setSpeed(5f)
+            gifDrawable.loopCount = 0
         } catch (ex: Exception) {
         }
     }

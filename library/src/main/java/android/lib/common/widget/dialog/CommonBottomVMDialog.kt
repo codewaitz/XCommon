@@ -1,9 +1,6 @@
 package android.lib.common.widget.dialog
 
-import android.lib.common.base.BaseApplication
-import android.lib.common.base.BaseLoadingDialog
 import android.lib.common.base.BaseViewModel
-import android.lib.common.manager.LoadingDialogManager
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
 
@@ -15,7 +12,6 @@ import androidx.fragment.app.FragmentActivity
 abstract class CommonBottomVMDialog : CommonBottomDialog {
     private var vm: BaseViewModel? = null // view model
     protected var activity: FragmentActivity
-    private var loadingDialog: BaseLoadingDialog? = null
 
     constructor(activity: FragmentActivity) : super(activity) {
         this.activity = activity
@@ -39,18 +35,8 @@ abstract class CommonBottomVMDialog : CommonBottomDialog {
     // 注册loading框
     private fun registerLoadingDialog() {
         vm?.isLoading?.observe(activity) {
-            if (it) showLoadingDialog()
-            else hideLoadingDialog()
+            if (it) showLoading()
+            else hideLoading()
         }
-    }
-
-    private fun showLoadingDialog() {
-        if (loadingDialog == null) loadingDialog =
-            LoadingDialogManager.createInstance(BaseApplication.loadingStyle)
-        if (loadingDialog?.isVisible == false) loadingDialog?.showDialog(activity.supportFragmentManager)
-    }
-
-    private fun hideLoadingDialog() {
-        loadingDialog?.dismissDialog()
     }
 }

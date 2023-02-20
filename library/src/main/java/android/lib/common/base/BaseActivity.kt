@@ -16,7 +16,6 @@ abstract class BaseActivity<VB : ViewBinding>(val inflater: (inflater: LayoutInf
     BaseFragmentActivity() {
     protected lateinit var vb: VB // view binding
     private var vm: BaseViewModel? = null // view model
-    private var loadingDialog: BaseLoadingDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,19 +55,9 @@ abstract class BaseActivity<VB : ViewBinding>(val inflater: (inflater: LayoutInf
     // 注册loading框
     private fun registerLoadingDialog() {
         vm?.isLoading?.observe(this) {
-            if (it) showLoadingDialog()
-            else hideLoadingDialog()
+            if (it) LoadingDialogManager.show(this)
+            else LoadingDialogManager.dismiss()
         }
-    }
-
-    private fun showLoadingDialog() {
-        if (loadingDialog == null) loadingDialog =
-            LoadingDialogManager.createInstance(BaseApplication.loadingStyle)
-        if (loadingDialog?.isVisible == false) loadingDialog?.showDialog(supportFragmentManager)
-    }
-
-    private fun hideLoadingDialog() {
-        loadingDialog?.dismissDialog()
     }
 
     override fun onDestroy() {
