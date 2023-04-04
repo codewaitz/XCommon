@@ -48,15 +48,21 @@ abstract class BaseLoadingDialog : DialogFragment() {
 
     //显示
     open fun showDialog(fragmentManager: FragmentManager) {
-        if (isVisible) {
-            dismiss()
+        try {
+            if (isVisible) {
+                dismiss()
+            }
+            show(fragmentManager, "")
+        } catch (ex: Exception) {
         }
-        show(fragmentManager, "")
     }
 
     //隐藏
     open fun dismissDialog() {
-        dismiss()
+        try {
+            dismiss()
+        } catch (ex: Exception) {
+        }
     }
 
     open abstract fun onCreateView(): View

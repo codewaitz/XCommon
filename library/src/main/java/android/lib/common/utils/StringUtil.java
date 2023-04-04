@@ -37,6 +37,18 @@ public class StringUtil {
         return "$" + format2Decimal(d);
     }
 
+    // 获取格式化的价格
+    public static Double reFormatPrice(String string) {
+        double d = 0;
+        try {
+            int index = string.indexOf("$");
+            if (index != -1) string = string.substring(index + 1);
+            d = Double.parseDouble(string);
+        } catch (Exception exception) {
+        }
+        return d;
+    }
+
     // 格式化2位小数
     public static String format2Decimal(double d) {
         return String.format("%.2f", d);

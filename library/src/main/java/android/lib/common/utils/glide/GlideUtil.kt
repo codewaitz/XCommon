@@ -27,7 +27,8 @@ class GlideUtil {
                 if (defaultRes != 0) {
                     builder.placeholder(defaultRes).error(defaultRes)
                 }
-                builder.skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                builder.skipMemoryCache(true).placeholder(imageView.drawable)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE).dontAnimate()
                     .into(imageView)
             }
         }
