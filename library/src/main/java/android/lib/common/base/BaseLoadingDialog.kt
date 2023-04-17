@@ -3,10 +3,7 @@ package android.lib.common.base
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.Window
+import android.view.*
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 
@@ -39,6 +36,7 @@ abstract class BaseLoadingDialog : DialogFragment() {
             window?.apply {
                 //去掉DialogFragment内部的背景色
                 setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
                 //去掉Padding
                 decorView.setPadding(0, 0, 0, 0)
             }
