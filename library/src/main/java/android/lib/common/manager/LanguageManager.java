@@ -4,11 +4,11 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.ContextWrapper;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.lib.common.base.BaseApplication;
 import android.lib.common.bean.Language;
+import android.lib.common.local.mmkv.KV;
 import android.lib.common.utils.StringUtil;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -23,13 +23,20 @@ import java.util.Locale;
  * 多语言工具类
  */
 public class LanguageManager {
-    private static final String SPR_CONTEXT_LANGUAGE = "spr_context_language";
     private static final String SPR_SAVE_LANGUAGE = "spr_save_language";
     private static LinkedHashMap<String, Language> languages = new LinkedHashMap<>(); // 语言集
     public static final String SYSTEM_LANGUAGE_KEY = "system_language"; // 系统语言key,或不用
+    private static String curLanguageKey = ""; // 当前语言
 
+    // 初始化
     public static void init(LinkedHashMap<String, Language> languagePool) {
         languages = languagePool;
+        curLanguageKey = getLanguageKeyByPref();
+    }
+
+    // 获取当前语言key
+    public static String getCurLanguageKey() {
+        return curLanguageKey;
     }
 
     /**
@@ -38,7 +45,7 @@ public class LanguageManager {
      * @param context
      * @param locale
      */
-    public static void updateLanguage(final Context context, Locale locale) {
+    private static void updateLanguage(final Context context, Locale locale) {
         Resources resources = context.getResources();
         Configuration config = resources.getConfiguration();
         Locale contextLocale = config.locale;
@@ -86,8 +93,7 @@ public class LanguageManager {
      * @return
      */
     private static String getPrefAppLocaleLanguage() {
-        SharedPreferences sp = BaseApplication.instance.getSharedPreferences(SPR_CONTEXT_LANGUAGE, Context.MODE_PRIVATE);
-        return sp.getString(SPR_SAVE_LANGUAGE, "");
+        return KV.INSTANCE.decodeString(SPR_SAVE_LANGUAGE);
     }
 
     /**
@@ -96,7 +102,7 @@ public class LanguageManager {
      * @return null则无
      */
     public static Locale getPrefAppLocale() {
-        String appLocaleLanguage = getPrefAppLocaleLanguage();
+        String appLocaleLanguage = curLanguageKey;
         if (!TextUtils.isEmpty(appLocaleLanguage)) {
             if (SYSTEM_LANGUAGE_KEY.equals(appLocaleLanguage)) { //系统语言则返回null
                 return null;
@@ -118,16 +124,23 @@ public class LanguageManager {
     }
 
 
+    // 切换多语言
+    public static void changeLanguage(String languageKey) {
+        curLanguageKey = languageKey;
+        try {
+            Locale locale = LanguageManager.getLocaleByLanguageKey(languageKey);
+            LanguageManager.saveAppLocaleLanguage(locale.toLanguageTag());
+        } catch (Exception ex) {
+        }
+    }
+
     /**
      * 缓存app当前语言
      *
      * @param language
      */
-    public static void saveAppLocaleLanguage(String language) {
-        SharedPreferences sp = BaseApplication.instance.getSharedPreferences(SPR_CONTEXT_LANGUAGE, Context.MODE_PRIVATE);
-        SharedPreferences.Editor edit = sp.edit();
-        edit.putString(SPR_SAVE_LANGUAGE, language);
-        edit.apply();
+    private static void saveAppLocaleLanguage(String language) {
+        KV.INSTANCE.encode(SPR_SAVE_LANGUAGE, language);
     }
 
     /**
@@ -201,8 +214,8 @@ public class LanguageManager {
         return null;
     }
 
-    // 获取本地语言
-    public static String getLanguageByPref() {
+    // 获取本地语言 key
+    public static String getLanguageKeyByPref() {
         String appLocaleLanguage = getPrefAppLocaleLanguage();
         if (StringUtil.isEmpty(appLocaleLanguage)) appLocaleLanguage = getAppLanguage();
         if (!StringUtil.isEmpty(appLocaleLanguage)) {
