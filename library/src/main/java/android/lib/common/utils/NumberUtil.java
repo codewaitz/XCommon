@@ -26,4 +26,12 @@ public class NumberUtil {
     public static int string2Int(String string) {
         return Integer.parseInt(string);
     }
+
+    public static double float2Double(float f) {
+        return (double) f;
+    }
+
+    public static int double2Int(double f) {
+        return (int) f;
+    }
 }
