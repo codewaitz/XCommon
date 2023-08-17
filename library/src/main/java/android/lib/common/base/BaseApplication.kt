@@ -2,11 +2,12 @@ package android.lib.common.base
 
 import android.app.Application
 import android.content.Context
+import android.graphics.Color
 import android.lib.common.exception.CrashHandler
+import android.lib.common.language.MultiLanguages
 import android.lib.common.manager.AllActivityManager
 import android.lib.common.utils.LogUtil
 import android.lib.common.widget.dialog.loading.LoadingStyle
-import android.lib.common.language.MultiLanguages
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.tencent.mmkv.MMKV
 
@@ -23,6 +24,9 @@ open class BaseApplication : Application() {
 
         // loading style
         lateinit var loadingStyle: LoadingStyle
+
+        // main color
+        var mainColor: Int = Color.BLACK
     }
 
     override fun onCreate() {
@@ -30,6 +34,7 @@ open class BaseApplication : Application() {
         instance = this // 实例赋值
         var isDebug = isDebugMode()
         loadingStyle = loadingStyle()
+        mainColor = mainColor()
         LogUtil.setMode(isDebug) // 日志模式
         if (isMultiLanguage()) MultiLanguages.init(this)
         AllActivityManager.init(this) // activity manager
@@ -52,6 +57,11 @@ open class BaseApplication : Application() {
     // 加载框样式
     open fun loadingStyle(): LoadingStyle {
         return LoadingStyle.PROGRESS
+    }
+
+    // 主颜色
+    open fun mainColor(): Int {
+        return Color.BLACK
     }
 
     // 设置多语言

@@ -3,7 +3,7 @@ package android.lib.common.widget.dialog.loading
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.lib.common.base.BaseLoadingDialog
-import android.lib.common.databinding.CommonDialogProgressBinding
+import android.lib.common.databinding.CommonDialogLoadingProgressBinding
 import android.os.Bundle
 import android.view.View
 import android.view.animation.LinearInterpolator
@@ -11,14 +11,14 @@ import android.view.animation.LinearInterpolator
 /**
  * @author: yangkui
  * @Date: 2022/4/13
- * @Description: Common Progress
+ * @Description: loading
  */
 class ProgressLoadingDialog : BaseLoadingDialog() {
-    private lateinit var viewBinding: CommonDialogProgressBinding
+    private lateinit var viewBinding: CommonDialogLoadingProgressBinding
     private lateinit var mAnimation: ObjectAnimator
 
     override fun onCreateView(): View {
-        viewBinding = CommonDialogProgressBinding.inflate(layoutInflater)
+        viewBinding = CommonDialogLoadingProgressBinding.inflate(layoutInflater)
         return viewBinding.root
     }
 

@@ -34,9 +34,20 @@ public class PictureSelectUtils {
      * 通过相册获取图片
      */
     public static void getByAlbum(ActivityResultLauncher launch) {
+        getByAlbum(launch, false);
+    }
+
+    /**
+     * 通过相册获取图片
+     */
+    public static void getByAlbum(ActivityResultLauncher launch, Boolean isMoreType) {
         Intent intent = new Intent(Intent.ACTION_PICK,
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        intent.setType("image/*");
+        String type = "image/*";
+        if (isMoreType) {
+            type += ";video/*";
+        }
+        intent.setType(type);
         launch.launch(intent);
     }
 

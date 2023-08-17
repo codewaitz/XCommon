@@ -1,7 +1,7 @@
 package android.lib.common.widget.dialog.loading
 
 import android.lib.common.base.BaseLoadingDialog
-import android.lib.common.databinding.CommonDialogLoadingNearrBinding
+import android.lib.common.databinding.CommonDialogLoadingWehandyBinding
 import android.os.Bundle
 import android.view.View
 import pl.droidsonroids.gif.GifDrawable
@@ -11,11 +11,11 @@ import pl.droidsonroids.gif.GifDrawable
  * @Date: 2022/4/13
  * @Description: loading
  */
-class NearrLoadingDialog : BaseLoadingDialog() {
-    private lateinit var viewBinding: CommonDialogLoadingNearrBinding
+class WehandyLoadingDialog : BaseLoadingDialog() {
+    private lateinit var viewBinding: CommonDialogLoadingWehandyBinding
 
     override fun onCreateView(): View {
-        viewBinding = CommonDialogLoadingNearrBinding.inflate(layoutInflater)
+        viewBinding = CommonDialogLoadingWehandyBinding.inflate(layoutInflater)
         return viewBinding.root
     }
 

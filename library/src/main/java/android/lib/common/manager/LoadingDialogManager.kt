@@ -5,6 +5,7 @@ import android.lib.common.base.BaseLoadingDialog
 import android.lib.common.widget.dialog.loading.LoadingStyle
 import android.lib.common.widget.dialog.loading.NearrLoadingDialog
 import android.lib.common.widget.dialog.loading.ProgressLoadingDialog
+import android.lib.common.widget.dialog.loading.WehandyLoadingDialog
 import androidx.fragment.app.FragmentActivity
 
 /**
@@ -34,6 +35,7 @@ object LoadingDialogManager {
     private fun createInstance(loadingStyle: LoadingStyle): BaseLoadingDialog? {
         return when (loadingStyle) {
             LoadingStyle.NEARR -> NearrLoadingDialog()
+            LoadingStyle.WEHANDY -> WehandyLoadingDialog()
             else -> ProgressLoadingDialog()
         }
     }

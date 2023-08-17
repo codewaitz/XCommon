@@ -3,4 +3,4 @@
     android:id="@+id/common_dialog_loading_image"
     android:layout_width="@dimen/dp_80"
     android:layout_height="@dimen/dp_80"
-    android:src="@drawable/gif_loading" />
+    android:src="@drawable/common_gif_loading_nearr" />

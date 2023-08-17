@@ -3,6 +3,7 @@ package android.lib.common.widget.dialog
 import android.content.Context
 import android.content.DialogInterface
 import android.lib.common.R
+import android.lib.common.base.BaseApplication
 import android.lib.common.base.BaseDialog
 import android.lib.common.utils.StringUtil
 import android.view.LayoutInflater
@@ -37,7 +38,7 @@ class CommonWarnDialog : BaseDialog {
         private var ok: String? = null
         private var cancel: String? = null
         private var title: String? = null
-        private var okColor: Int = 0
+        private var okColor: Int = BaseApplication.mainColor
         private var cancelColor: Int = 0
         private var positiveButtonClickListener: DialogInterface.OnClickListener? = null
         private var negativeButtonClickListener: DialogInterface.OnClickListener? = null

@@ -17,4 +17,8 @@ abstract class BaseVH<B>(itemView: View) : RecyclerView.ViewHolder(itemView) {
     protected fun <V : View> findView(intRes: Int): V {
         return itemView.findViewById(intRes)
     }
+
+    protected fun <V : View> findEmptyView(intRes: Int): V? {
+        return itemView.findViewById(intRes)
+    }
 }

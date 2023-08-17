@@ -11,10 +11,7 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.RelativeLayout
 import android.widget.TextView
-import pl.droidsonroids.gif.GifDrawable
-import pl.droidsonroids.gif.GifImageView
 
 /**
  * @author: yangkui
@@ -24,8 +21,6 @@ import pl.droidsonroids.gif.GifImageView
 abstract class CommonBottomDialog : BaseDialog {
     private var title: String? = ""
     private var tvTitle: TextView? = null
-    private var rlLoading: RelativeLayout? = null
-    private var givLoading: GifImageView? = null
     var inflater: LayoutInflater
 
     constructor(context: Context) : this(context, null)
@@ -39,9 +34,7 @@ abstract class CommonBottomDialog : BaseDialog {
         setCanceledOnTouchOutside(true)
         window?.setGravity(Gravity.BOTTOM)
         prepareCreate()
-        setContentView(R.layout.common_bottom_dialog)
-        rlLoading = findViewById(R.id.rl_loading)
-        givLoading = findViewById(R.id.giv_loading)
+        setContentView(R.layout.common_dialog_bottom)
         findViewById<ImageView>(R.id.common_bottom_dialog_close).setOnClickListener {
             dismiss()
         }
@@ -78,22 +71,6 @@ abstract class CommonBottomDialog : BaseDialog {
         layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT
         layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT
         window!!.attributes = layoutParams
-    }
-
-    protected fun showLoading() {
-        if (!isShowing) return
-        try {
-            rlLoading?.visibility = View.VISIBLE
-            val gifDrawable = givLoading?.drawable as GifDrawable
-            gifDrawable.setSpeed(5f)
-            gifDrawable.loopCount = 0
-        } catch (ex: Exception) {
-        }
-    }
-
-    protected fun hideLoading() {
-        if (!isShowing) return
-        rlLoading?.visibility = View.GONE
     }
 
     protected abstract fun getLayoutRes(): Int

@@ -2,12 +2,12 @@ package android.lib.common.base
 
 import android.content.Context
 import android.lib.common.R
+import android.lib.common.language.MultiLanguages
 import android.lib.common.manager.LoadingDialogManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.viewbinding.ViewBinding
 import com.gyf.immersionbar.ktx.immersionBar
-import android.lib.common.language.MultiLanguages
 
 /**
  * @author: yangkui

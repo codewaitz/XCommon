@@ -3,6 +3,7 @@ package android.lib.common.widget.dialog
 import android.lib.common.base.BaseViewModel
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
+import pl.droidsonroids.gif.GifImageView
 
 /**
  * @author: yangkui
@@ -12,6 +13,7 @@ import androidx.fragment.app.FragmentActivity
 abstract class CommonBottomVMDialog : CommonBottomDialog {
     private var vm: BaseViewModel? = null // view model
     protected var activity: FragmentActivity
+    private var givLoading: GifImageView? = null
 
     constructor(activity: FragmentActivity) : super(activity) {
         this.activity = activity
@@ -35,8 +37,16 @@ abstract class CommonBottomVMDialog : CommonBottomDialog {
     // 注册loading框
     private fun registerLoadingDialog() {
         vm?.isLoading?.observe(activity) {
-            if (it) showLoading()
-            else hideLoading()
+            if (isShowing) {
+                if (it) showLoading()
+                else hideLoading()
+            }
         }
+    }
+
+    protected open fun showLoading() {
+    }
+
+    protected open fun hideLoading() {
     }
 }
